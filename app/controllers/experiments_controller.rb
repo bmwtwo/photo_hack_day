@@ -17,6 +17,10 @@ class ExperimentsController < ApplicationController
 		# @data = get_photo_details(popular_photos[:photos][0..2].map {|p| p[:id]})
 	end
 
+	def refresh_database
+		
+	end
+
 	def get_from_500px resource=nil, opts=nil
 		query_url = BASE_URL + ""
 		unless resource.nil?
