@@ -5,21 +5,25 @@
 	%link{:rel => "stylesheet", :type => "text/css", :href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/base/jquery-ui.css"}
 	%link{:rel => "stylesheet", :type => "text/css", :href => "/assets/experiments.css"}
 
+#featureImage.hidden
+	%img
+	%ul
+
 #sliders
 	-#camera
 	-#lens
 	#focalLength
 		%p{:value => "Focal Length: "} Focal Length: 0
-		%div
+		%div{:name => "focal_length", :data_min => @range[:focal_length].first, :data_max => @range[:focal_length].last}
 	#iso
 		%p{:value => "ISO: "} ISO: 0
-		%div
+		%div{:name => "iso", :data_min => @range[:iso].first, :data_max => @range[:iso].last}
 	#shutterSpeed
 		%p{:value => "Shutter Speed: "} Shutter Speed: 0
-		%div
+		%div{:name => "shutter_speed", :data_min => @range[:shutter_speed].first, :data_max => @range[:shutter_speed].last}
 	#aperture
-		%p{:value => "Aperture: "} Aperture: 0
-		%div
+		%p{:value => "Aperture: F/"} Aperture: F/0
+		%div{:name => "aperture", :data_min => @range[:aperture].first, :data_max => @range[:aperture].last}
 
 #range
 	-@range.each do |k, v|
