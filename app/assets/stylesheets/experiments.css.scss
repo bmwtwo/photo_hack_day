@@ -57,8 +57,16 @@ body {
 	display: none;
 	margin-top: 0;
 
-	h1 {
+	h2 {
 		font-size: 120%;
+
+		a {
+			color: #DDD;
+			text-decoration: none;
+		}
+		a:hover {
+			color: #AAA;
+		}
 	}
 
 	p {

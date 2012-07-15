@@ -12,7 +12,7 @@
 	-#camera
 	-#lens
 	#focalLength
-		%p{:value => "Focal Length: "} Focal Length: 0
+		%p{:value => "Focal Length: "} Focal Length: 0 mm
 		%div{:name => "focal_length", :data_min => @range[:focal_length].first, :data_max => "210"}
 		-#@range[:focal_length].last}
 	#iso
@@ -20,7 +20,7 @@
 		%div{:name => "iso", :data_min => @range[:iso].first, :data_max => "500"}
 		-#@range[:iso].last}
 	#shutterSpeed
-		%p{:value => "Shutter Speed: "} Shutter Speed: 0
+		%p{:value => "Shutter Speed: "} Shutter Speed: 0 sec
 		%div{:name => "shutter_speed", :data_min => "0", :data_max => "0.05"}
 			-#@range[:shutter_speed].last}
 	#aperture
@@ -31,6 +31,7 @@
 
 #stats
 	%h2
+		%a{:href => "#", :target => "_blank"}
 	%p
 	%ul
 

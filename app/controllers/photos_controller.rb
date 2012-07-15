@@ -19,24 +19,30 @@ class PhotosController < ApplicationController
 
 		# oops, forgot to save user records
 		result["user"] = (get_from_500px ["users", result["user_id"]])[:user]
+		# grab fraction form of shutter speed, if available
+		result["shutter_speed"] = (get_photo_details [result["id"]])[0][:shutter_speed]
 
 		render :json => result
 	end
 
 	def diff_score params, item
 		score = 0
-		unless params[:aperture].to_f == 0 and item[:aperture] == 0
-			score += (params[:aperture].to_f-item[:aperture]).abs / [item[:aperture], params[:aperture].to_f].max
-		end
-		unless params[:focal_length].to_f == 0 and item[:focal_length] == 0
-			score += (params[:focal_length].to_f-item[:focal_length]).abs / [item[:focal_length], params[:focal_length].to_f].max
-		end
-		unless params[:iso].to_f == 0 and item[:iso] == 0
-			score += (params[:iso].to_f-item[:iso]).abs / [item[:iso], params[:iso].to_f].max
-		end
-		unless params[:shutter_speed].to_f == 0 and item[:shutter_speed] == 0
-			score += (params[:shutter_speed].to_f-item[:shutter_speed]).abs / [item[:shutter_speed], params[:shutter_speed].to_f].max
-		end
+		# unless params[:aperture].to_f == 0 and item[:aperture] == 0
+		# 	score += (params[:aperture].to_f-item[:aperture]).abs / [item[:aperture], params[:aperture].to_f].max
+		# end
+		# unless params[:focal_length].to_f == 0 and item[:focal_length] == 0
+		# 	score += (params[:focal_length].to_f-item[:focal_length]).abs / [item[:focal_length], params[:focal_length].to_f].max
+		# end
+		# unless params[:iso].to_f == 0 and item[:iso] == 0
+		# 	score += (params[:iso].to_f-item[:iso]).abs / [item[:iso], params[:iso].to_f].max
+		# end
+		# unless params[:shutter_speed].to_f == 0 and item[:shutter_speed] == 0
+		# 	score += (params[:shutter_speed].to_f-item[:shutter_speed]).abs / [item[:shutter_speed], params[:shutter_speed].to_f].max
+		# end
+		score += (params[:aperture].to_f - item[:aperture]).abs / 14
+		score += (params[:iso].to_f - item[:iso]).abs / 500
+		score += (params[:focal_length].to_f - item[:focal_length]).abs / 210
+		score += (params[:shutter_speed].to_f - item[:shutter_speed]).abs / 0.05
 	end
 
 	def download_popular

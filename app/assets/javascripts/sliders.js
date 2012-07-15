@@ -3,9 +3,22 @@ $(document).ready( function() {
 		var p = $(div).parent().children("p");
 		$(div).slider({
 			step: $(div).attr("name") == "shutter_speed" ? 0.001 : 0.1,
-			slide: function(event, ui) { $(p).text( $(p).attr("value") + $(div).slider("value") ); },
+			slide: function(event, ui) {
+				var newText = $(p).attr("value") + $(div).slider("value");
+				if ($(div).attr("name") == "shutter_speed")
+					newText += " sec";
+				else if ($(div).attr("name") == "focal_length")
+					newText += " mm";
+				$(p).text( newText );
+			},
 			stop: function(event, ui) {
-				$(p).text( $(p).attr("value") + $(div).slider("value") );
+				var newText = $(p).attr("value") + $(div).slider("value");
+				if ($(div).attr("name") == "shutter_speed")
+					newText += " sec";
+				else if ($(div).attr("name") == "focal_length")
+					newText += " mm";
+				$(p).text( newText );
+				
 				$("#featureImage img").fadeOut();
 				$("#stats").fadeOut();
 				$.ajax({
@@ -50,7 +63,7 @@ $(document).ready( function() {
 					var height = $(this).height();
 					console.log(width, height);
 					var ratio = 0.5*$(document).width() / width;
-					var percent = ratio*height / $(document).height * 100;
+					var percent = ratio*height / $(document).height() * 100;
 					$(this).css({
 						width: "50%",
 						height: percent + "%",
@@ -58,9 +71,9 @@ $(document).ready( function() {
 					})
 					.fadeIn();
 
-					$("#stats h2").html(data["name"]);
+					$("#stats h2 a").html(data["name"]).attr("href", "http://500px.com/photo/" + data["id"]);
 					console.log(data["user"]);
-					$("#stats p").html("by " + data["user"]["fullname"]);
+					$("#stats p").html('by ' + data["user"]["fullname"]);
 					$("#stats ul").html(getStatString(data));
 					$("#stats").fadeIn();
 				});
@@ -72,9 +85,9 @@ $(document).ready( function() {
 		// 	console.log(key + " => " + data[key]);
 		// };
 		result = "<li>Aperture: f/" + data["aperture"] + "</li>";
-		result += "<li>Focal length: " + data["focal_length"] + "</li>";
+		result += "<li>Focal length: " + data["focal_length"] + " mm</li>";
 		result += "<li>ISO: " + data["iso"] + "</li>";
-		result += "<li>Shutter speed: " + data["shutter_speed"] + "</li>";
+		result += "<li>Shutter speed: " + data["shutter_speed"] + " sec</li>";
 		return result
 	}
 });
