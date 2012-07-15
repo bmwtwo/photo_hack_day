@@ -1,0 +1,8 @@
+%ul
+	- @photo.attributes.each do |k, v|
+		- if k == "image_url"
+			%li
+				= "#{k} => "
+				= link_to v, v
+		- else
+			%li= "#{k} => #{v}"

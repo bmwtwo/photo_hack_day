@@ -20,3 +20,11 @@
 	#aperture
 		%p{:value => "Aperture: "} Aperture: 0
 		%div
+
+#range
+	-@range.each do |k, v|
+		%div
+			%h3= k
+			%ul
+				-v.each do |f|
+					%li= f

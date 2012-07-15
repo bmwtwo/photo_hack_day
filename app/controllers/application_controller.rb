@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
 
 	BASE_URL = 'https://api.500px.com/v1/'
 
+	before_filter :set_cache_buster
+
+	def set_cache_buster
+		response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+	    response.headers["Pragma"] = "no-cache"
+	    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+	end
+
   	def get_from_500px resource=nil, opts=nil
 		query_url = BASE_URL + ""
 		unless resource.nil?
@@ -28,7 +36,12 @@ class ApplicationController < ActionController::Base
 				query_url.concat("&#{opt}=#{value}")
 			end
 		end
+
 		raw_data = RestClient.get query_url
+
+		# puts query_url
+		puts raw_data.code
+
 		json = MultiJson.decode(raw_data)
 		recursive_symbolize_keys!(json)
 		json

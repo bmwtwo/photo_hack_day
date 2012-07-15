@@ -1,4 +1,14 @@
 PhotoHackDay::Application.routes.draw do
+
+  root :to => 'experiments#index'
+  match "/photos/download-popular" => "photos#download_popular"
+  match "/photos/ajax" => "photos#ajax"
+  match "/photos/offset/(:offset)" => "photos#index"
+
+  resources :experiments
+
+  resources :photos
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -45,12 +55,6 @@ PhotoHackDay::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => 'experiments#index'
-
-  resources :experiments
 
   # See how all your routes lay out with "rake routes"
 

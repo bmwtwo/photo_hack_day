@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715002052) do
+ActiveRecord::Schema.define(:version => 20120715014039) do
 
   create_table "photos", :force => true do |t|
     t.integer  "user_id"
@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(:version => 20120715002052) do
     t.text     "description"
     t.string   "camera"
     t.string   "lens"
-    t.decimal  "focal_length"
-    t.decimal  "shutter_speed"
     t.string   "aperture"
     t.integer  "times_viewed"
     t.decimal  "rating"
@@ -47,6 +45,9 @@ ActiveRecord::Schema.define(:version => 20120715002052) do
     t.boolean  "store_download"
     t.boolean  "store_print"
     t.datetime "updated_at",          :null => false
+    t.string   "iso"
+    t.string   "focal_length"
+    t.string   "shutter_speed"
   end
 
 end
