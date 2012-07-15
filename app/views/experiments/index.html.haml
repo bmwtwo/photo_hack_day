@@ -1,0 +1,22 @@
+- content_for :head do
+	%script{:type => "text/javascript", :src => "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"}
+	%script{:type => "text/javascript", :src => "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"}
+	%script{:type => "text/javascript", :src => "/assets/sliders.js"}
+	%link{:rel => "stylesheet", :type => "text/css", :href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/base/jquery-ui.css"}
+	%link{:rel => "stylesheet", :type => "text/css", :href => "/assets/experiments.css"}
+
+#sliders
+	-#camera
+	-#lens
+	#focalLength
+		%p{:value => "Focal Length: "} Focal Length: 0
+		%div
+	#iso
+		%p{:value => "ISO: "} ISO: 0
+		%div
+	#shutterSpeed
+		%p{:value => "Shutter Speed: "} Shutter Speed: 0
+		%div
+	#aperture
+		%p{:value => "Aperture: "} Aperture: 0
+		%div

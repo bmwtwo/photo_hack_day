@@ -1,0 +1,16 @@
+class ExperimentsController < ApplicationController
+	require 'rubygems'
+	require 'oauth'
+	require 'multi_json'
+
+	CONSUMER_KEY = ''
+	CONSUMER_SECRET = ''
+	USERNAME = ''
+	PASSWORD = ''
+
+	BASE_URL = 'https://api.500px.com'
+			
+	def index
+			
+	end
+end
