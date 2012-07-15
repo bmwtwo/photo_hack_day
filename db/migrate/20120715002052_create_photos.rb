@@ -12,7 +12,7 @@ class CreatePhotos < ActiveRecord::Migration
 	    t.string :aperture
 	    t.integer :times_viewed
 	    t.decimal :rating
-	    t.int :status
+	    t.integer :status
 	    t.date :created_at
 	    t.integer :category
 	    t.string :location
