@@ -18,7 +18,7 @@ $(document).ready( function() {
 				else if ($(div).attr("name") == "focal_length")
 					newText += " mm";
 				$(p).text( newText );
-				
+
 				$("#featureImage img").fadeOut();
 				$("#stats").fadeOut();
 				$.ajax({
@@ -70,6 +70,8 @@ $(document).ready( function() {
 						"margin-top": Math.max(-height*ratio / 2, -$(document).height() / 2) + "px"
 					})
 					.fadeIn();
+
+					$("#featureImage a").attr("href", "http://500px.com/photo/" + data["id"]);
 
 					$("#stats h2 a").html(data["name"]).attr("href", "http://500px.com/photo/" + data["id"]);
 					console.log(data["user"]);
