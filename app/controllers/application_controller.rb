@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
 		puts raw_data.code
 
 		json = MultiJson.decode(raw_data)
+
 		recursive_symbolize_keys!(json)
 		json
 	end
@@ -51,7 +52,7 @@ class ApplicationController < ActionController::Base
 	    hash.symbolize_keys!
 	    hash.values.select do |v|
 	    	recursive_symbolize_keys!(v) if v.is_a? Hash
-	    	v.each { |item| recursive_symbolize_keys!(item) } if v.is_a? Array
+	    	v.each { |item| recursive_symbolize_keys!(item) } if (v.is_a? Array and v.first.is_a? Hash)
 	    end
 	  end
 

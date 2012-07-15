@@ -16,6 +16,10 @@ class PhotosController < ApplicationController
 		arr = Photo.filter_aperture(arr)
 
 		result = arr.sort_by { |item| diff_score(params, item) }.first
+
+		# oops, forgot to save user records
+		result["user"] = (get_from_500px ["users", result["user_id"]])[:user]
+
 		render :json => result
 	end
 
